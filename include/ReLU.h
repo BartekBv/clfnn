@@ -1,0 +1,8 @@
+#pragma once
+#include "IActivation.h"
+
+class ReLU : public IActivation {
+    public:
+        Matrix compute(const Matrix& input) const override;
+        Matrix derivative(const Matrix& input) const override;
+};
