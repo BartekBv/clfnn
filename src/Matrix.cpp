@@ -1,4 +1,6 @@
 #include "../include/Matrix.h"
+#include <iostream>
+#include <iomanip>
 
 Matrix::Matrix(int r, int c) : rows(r) , cols(c) {
     data.resize(r, std::vector<double>(c, 0.0));
@@ -62,4 +64,14 @@ Matrix Matrix::transpose() const {
         }
     }
     return res;
+}
+
+void Matrix::print() const {
+    for (int i = 0; i < rows; i++) {
+        std::cout << "[ ";
+        for (int j = 0; j < cols; j++) {
+            std::cout << std::fixed << std::setprecision(3) << (*this)(i, j) << " ";
+        }
+        std::cout << "]" << std::endl;
+    }
 }
