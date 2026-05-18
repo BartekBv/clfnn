@@ -1,4 +1,4 @@
-#include "include/Sigmoid.h"
+#include "../include/Sigmoid.h"
 #include <cmath>
 
 Matrix Sigmoid::compute(const Matrix& input) const {
@@ -23,6 +23,6 @@ Matrix Sigmoid::derivative(const Matrix& input) const {
             res(i, j) = sigval(i, j) * (1.0 - sigval(i, j));
         }
     }
-    
+
     return res;
 }
