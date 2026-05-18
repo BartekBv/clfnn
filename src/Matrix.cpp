@@ -38,7 +38,7 @@ Matrix Matrix::add(const Matrix& other) const {
     return res;
 }
 
-Matrix Matrix::mult(const Matrix& other) const {
+Matrix Matrix::dot(const Matrix& other) const {
     if(this->cols != other.rows){
         throw std::invalid_argument("Incompatible dimensions for multiplication");
     }

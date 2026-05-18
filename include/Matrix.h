@@ -12,7 +12,7 @@ class Matrix {
         Matrix(int rows, int cols);
 
         Matrix add(const Matrix& other) const;
-        Matrix mult(const Matrix& other) const;
+        Matrix dot(const Matrix& other) const;
         Matrix transpose() const;
 
         int getRows() const;
