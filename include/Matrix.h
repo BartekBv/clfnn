@@ -20,4 +20,6 @@ class Matrix {
 
         double& operator()(int row, int col);
         const double& operator()(int row, int col) const;
+
+        void print() const;
 };
