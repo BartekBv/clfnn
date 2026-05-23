@@ -7,7 +7,6 @@ double MSE::calcLoss(const Matrix& pred, const Matrix& target) const {
     }
 
     double sum = 0.0;
-    int n = pred.getRows() * pred.getCols();
 
     for (int i = 0; i < pred.getRows(); i++) {
         for (int j = 0; j < pred.getCols(); j++) {
@@ -16,7 +15,7 @@ double MSE::calcLoss(const Matrix& pred, const Matrix& target) const {
         }
     }
 
-    return sum / n;
+    return sum / (pred.getRows() * pred.getCols());
 }
 
 
@@ -27,11 +26,12 @@ Matrix MSE::calcGrad(const Matrix& pred, const Matrix& target) const {
 
     int r = pred.getRows();
     int c = pred.getCols();
+    int n = r * c;
     Matrix grad(r, c);
 
     for (int i = 0; i < r; i++) {
         for (int j = 0; j < c; j++) {
-            grad(i, j) = 2.0 * (pred(i, j) - target(i, j)) / (r * c);
+            grad(i, j) = 2.0 * (pred(i, j) - target(i, j)) / n;
         }
     }
 
