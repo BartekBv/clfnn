@@ -15,7 +15,8 @@ double MSE::calcLoss(const Matrix& pred, const Matrix& target) const {
         }
     }
 
-    return sum / (pred.getRows() * pred.getCols());
+    this->lastCalculatedLoss = sum / (pred.getRows() * pred.getCols());
+    return this->lastCalculatedLoss;
 }
 
 
@@ -36,4 +37,8 @@ Matrix MSE::calcGrad(const Matrix& pred, const Matrix& target) const {
     }
 
     return grad;
+}
+
+double MSE::getLastCalculatedLoss() const {
+    return this->lastCalculatedLoss;
 }
