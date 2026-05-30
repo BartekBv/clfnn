@@ -6,4 +6,5 @@ class ILoss {
         virtual ~ILoss() = default;
         virtual double calcLoss(const Matrix& predicted, const Matrix& target) const = 0;
         virtual Matrix calcGrad(const Matrix& predicted, const Matrix& target) const = 0;
+        virtual double getLastCalculatedLoss() const = 0;
 };
