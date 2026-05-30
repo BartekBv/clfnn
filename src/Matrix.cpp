@@ -56,6 +56,20 @@ Matrix Matrix::dot(const Matrix& other) const {
     return res;
 }
 
+Matrix Matrix::subtract(const Matrix& other) const {
+    if(this->rows != other.rows || this->cols != other.cols){
+        throw std::invalid_argument("Matrices must have the same dimensions for subtraction");
+    }
+    
+    Matrix res(this->rows, this->cols);
+    for(int i = 0; i < this->rows; i++) {
+        for(int j = 0; j < this->cols; j++) {
+            res(i, j) = (*this)(i, j) - other(i, j);
+        } 
+    }
+    return res;
+}
+
 Matrix Matrix::transpose() const {
     Matrix res(this->cols, this->rows);
     for(int i = 0; i < this->rows; i++) {
