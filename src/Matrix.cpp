@@ -70,6 +70,16 @@ Matrix Matrix::subtract(const Matrix& other) const {
     return res;
 }
 
+Matrix Matrix::multScalar(double scalar) const {
+    Matrix res(this->rows, this->cols);
+    for(int i = 0; i < this->rows; i++) {
+        for(int j = 0; j < this->cols; j++) {
+            res(i, j) = (*this)(i, j) * scalar;
+        } 
+    }
+    return res;
+}
+
 Matrix Matrix::transpose() const {
     Matrix res(this->cols, this->rows);
     for(int i = 0; i < this->rows; i++) {
