@@ -13,6 +13,10 @@ class Matrix {
 
         Matrix add(const Matrix& other) const;
         Matrix dot(const Matrix& other) const;
+        Matrix subtract(const Matrix& other) const;
+        Matrix multScalar(double scalar) const;
+        Matrix multHadamard(const Matrix& other) const;
+        Matrix addBias(const Matrix& bias) const;
         Matrix transpose() const;
 
         int getRows() const;
