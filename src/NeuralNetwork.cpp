@@ -9,3 +9,8 @@ NeuralNetwork::~NeuralNetwork() {
     }
     delete lossFunction;
 }
+
+void NeuralNetwork::addLayer(ILayer* layer) {
+    this->layers.push_back(layer);
+}
+
