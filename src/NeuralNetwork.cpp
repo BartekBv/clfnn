@@ -23,5 +23,11 @@ void NeuralNetwork::train(const Matrix& input, const Matrix& target, int epochs,
 
         double currentLoss = this->lossFunction->calcLoss(current, target);
 
+        Matrix grad = this->lossFunction->calcGrad(current, target);
+
+        for (auto i = layers.rbegin(); i != layers.rend(); i++) {
+            grad = (*i)->backward(grad);
+        }
+        
     }
 }
