@@ -21,5 +21,7 @@ void NeuralNetwork::train(const Matrix& input, const Matrix& target, int epochs,
             current = layer->forward(current);
         }
 
+        double currentLoss = this->lossFunction->calcLoss(current, target);
+
     }
 }
