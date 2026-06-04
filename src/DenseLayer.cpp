@@ -17,3 +17,9 @@ DenseLayer::DenseLayer(int inputSize, int outputSize, IActivation* activation)
             biases(0, i) = 0.0;
         }
 }
+
+Matrix DenseLayer::forward(const Matrix& input) {
+    this->lastInput = input;
+    this->lastZ = input.dot(weights).addBias(biases);
+    return this->activation->compute(this->lastZ);
+}
