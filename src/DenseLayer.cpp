@@ -23,3 +23,19 @@ Matrix DenseLayer::forward(const Matrix& input) {
     this->lastZ = input.dot(weights).addBias(biases);
     return this->activation->compute(this->lastZ);
 }
+
+Matrix DenseLayer::backward(const Matrix& outputGrad) {
+    Matrix dZ = outputGrad.multHadamard(this->activation->derivatrive(this->lastZ));
+
+    this->current_dW = this->lastInput.transpose().dot(dZ);
+
+    for(int j = 0; j < this->biases.getCols(); j++) {
+        double sum = 0.0;
+        for(int i = 0; i < dZ.getRows(); i++) {
+            sum += dZ(i, j);
+        }
+        this->current_db(0, j) = sum;
+    }
+
+    return dZ.dot(this->weights.transpose());
+}
