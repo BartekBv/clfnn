@@ -9,7 +9,7 @@ DenseLayer::DenseLayer(int inputSize, int outputSize, IActivation* activation)
 {
         for (int i = 0; i < inputSize; i++){
             for (int j = 0; j < outputSize; j++){
-                weights(i, j) = (double)rand() / RAND_MAX) - 0.5;
+                weights(i, j) = ((double)rand() / RAND_MAX) - 0.5;
                 //losowe wagi z zakresu [-0.5, 0.5]
             }
         }
@@ -26,7 +26,7 @@ Matrix DenseLayer::forward(const Matrix& input) {
 }
 
 Matrix DenseLayer::backward(const Matrix& outputGrad) {
-    Matrix dZ = outputGrad.multHadamard(this->activation->derivatrive(this->lastZ));
+    Matrix dZ = outputGrad.multHadamard(this->activation->derivative(this->lastZ));
 
     this->current_dW = this->lastInput.transpose().dot(dZ);
 
