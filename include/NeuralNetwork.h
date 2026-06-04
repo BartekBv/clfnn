@@ -1,5 +1,5 @@
 #pragma once
-#include "Ilayer.h"
+#include "ILayer.h"
 #include "ILoss.h"
 #include "Matrix.h"
 #include <vector>
@@ -15,4 +15,4 @@ class NeuralNetwork {
         void addLayer(ILayer* layer);
         void train(const Matrix& input, const Matrix& target, int epochs, double lr);
         const Matrix predict(const Matrix& input);
-}
+};
