@@ -1,4 +1,5 @@
 #include "../include/DenseLayer.h"
+#include <cstdlib> // for rand() and RAND_MAX
 
 DenseLayer::DenseLayer(int inputSize, int outputSize, IActivation* activation)
     : weights(inputSize, outputSize), biases(1, outputSize),
@@ -38,4 +39,9 @@ Matrix DenseLayer::backward(const Matrix& outputGrad) {
     }
 
     return dZ.dot(this->weights.transpose());
+}
+
+void DenseLayer::updateWeights(double learningRate) {
+    this->weights = this->weights.subtract(this->current_dW.multScalar(learningRate));
+    this->biases = this->biases.subtract(this->current_db.multScalar(learningRate));
 }
