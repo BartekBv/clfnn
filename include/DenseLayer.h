@@ -10,7 +10,7 @@ class DenseLayer : public ILayer {
         Matrix lastInput;
         Matrix lastZ;
         Matrix current_dW;
-        Matrix current_dB;
+        Matrix current_db;
 
         IActivation* activation;
     
