@@ -14,3 +14,6 @@ void NeuralNetwork::addLayer(ILayer* layer) {
     this->layers.push_back(layer);
 }
 
+void NeuralNetwork::train(const Matrix& input, const Matrix& target, int epochs, double lr) {
+    
+}
