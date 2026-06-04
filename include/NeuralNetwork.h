@@ -11,7 +11,7 @@ class NeuralNetwork {
     
     public:
         ~NeuralNetwork();
-        NeuralNetwork(ILoss* lossFunction);
+        NeuralNetwork(ILoss* loss);
         void addLayer(ILayer* layer);
         void train(const Matrix& input, const Matrix& target, int epochs, double lr);
         const Matrix predict(const Matrix& input);
