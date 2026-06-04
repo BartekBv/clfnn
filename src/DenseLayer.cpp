@@ -49,3 +49,7 @@ void DenseLayer::updateWeights(double learningRate) {
 Matrix DenseLayer::getWeights() const {
     return this->weights;
 }
+
+Matrix DenseLayer::getBiases() const {
+    return this->biases;
+}
