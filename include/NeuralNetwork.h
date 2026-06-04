@@ -8,7 +8,7 @@ class NeuralNetwork {
     private:
         std::vector<ILayer*> layers;
         ILoss* lossFunction;
-
+    
     public:
         ~NeuralNetwork();
         NeuralNetwork(ILoss* lossFunction);
