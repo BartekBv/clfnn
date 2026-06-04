@@ -28,6 +28,9 @@ void NeuralNetwork::train(const Matrix& input, const Matrix& target, int epochs,
         for (auto i = layers.rbegin(); i != layers.rend(); i++) {
             grad = (*i)->backward(grad);
         }
-        
+
+        for(ILayer* layer : layers) {
+            layer->updateWeights(lr);
+        }
     }
 }
