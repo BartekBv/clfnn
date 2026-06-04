@@ -15,5 +15,11 @@ void NeuralNetwork::addLayer(ILayer* layer) {
 }
 
 void NeuralNetwork::train(const Matrix& input, const Matrix& target, int epochs, double lr) {
-    
+    for (int e = 0; e < epochs; e++) {
+        Matrix current = input;
+        for (ILayer* layer : layers) {
+            current = layer->forward(current);
+        }
+
+    }
 }
