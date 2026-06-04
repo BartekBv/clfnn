@@ -38,3 +38,13 @@ void NeuralNetwork::train(const Matrix& input, const Matrix& target, int epochs,
         }
     }
 }
+
+Matrix NeuralNetwork::predict(const Matrix& input) const {
+    Matrix current = input;
+
+    for (ILayer* layer : layers) {
+        current = layer->forward(current);
+    }
+
+    return current;
+}
