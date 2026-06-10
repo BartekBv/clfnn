@@ -11,3 +11,4 @@ build/
 notatka.md
 test/
 utils/
+*_test
