@@ -22,6 +22,10 @@ void NeuralNetwork::train(const Matrix& input, const Matrix& target, int epochs,
         }
 
         double currentLoss = this->lossFunction->calcLoss(current, target);
+        if(currentLoss < 1e-6) {
+            std::cout << "Early stopping at epoch " << e << " with loss: " << currentLoss << "\n";
+            break;
+        }
 
         Matrix grad = this->lossFunction->calcGrad(current, target);
 
