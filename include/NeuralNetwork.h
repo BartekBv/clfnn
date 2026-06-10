@@ -13,6 +13,6 @@ class NeuralNetwork {
         ~NeuralNetwork();
         NeuralNetwork(ILoss* loss);
         void addLayer(ILayer* layer);
-        void train(const Matrix& input, const Matrix& target, int epochs, double lr);
+        void train(const Matrix& input, const Matrix& target, int epochs, double lr, bool printProgress = false);
         Matrix predict(const Matrix& input) const;
 };

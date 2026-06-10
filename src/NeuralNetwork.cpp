@@ -15,7 +15,7 @@ void NeuralNetwork::addLayer(ILayer* layer) {
     this->layers.push_back(layer);
 }
 
-void NeuralNetwork::train(const Matrix& input, const Matrix& target, int epochs, double lr) {
+void NeuralNetwork::train(const Matrix& input, const Matrix& target, int epochs, double lr, bool printProgress) {
     for (int e = 0; e < epochs; e++) {
         Matrix current = input;
         for (ILayer* layer : layers) {
@@ -38,7 +38,7 @@ void NeuralNetwork::train(const Matrix& input, const Matrix& target, int epochs,
             layer->updateWeights(lr);
         }
 
-        if (e % 500 == 0 || e == epochs - 1) {
+        if (printProgress && (e % 500 == 0 || e == epochs - 1)) {
             std::cout << "Epoch [ "
                       << std::setw(std::to_string(epochs).length()) << e
                       << " / " << epochs << " ]  Loss: " 
