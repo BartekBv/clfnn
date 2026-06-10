@@ -33,7 +33,7 @@ void NeuralNetwork::train(const Matrix& input, const Matrix& target, int epochs,
             layer->updateWeights(lr);
         }
 
-        if (e % 100 == 0 || e == epochs - 1) {
+        if (e % 500 == 0 || e == epochs - 1) {
             std::cout << "Epoch: " << e << ", Loss: " << currentLoss << "\n";
         }
     }
