@@ -1,5 +1,6 @@
 #include "../include/NeuralNetwork.h"
 #include <iostream>
+#include <iomanip>
 
 NeuralNetwork::NeuralNetwork(ILoss* loss) : lossFunction(loss) {}
 
@@ -38,7 +39,10 @@ void NeuralNetwork::train(const Matrix& input, const Matrix& target, int epochs,
         }
 
         if (e % 500 == 0 || e == epochs - 1) {
-            std::cout << "Epoch: " << e << ", Loss: " << currentLoss << "\n";
+            std::cout << "Epoch [ "
+                      << std::setw(std::to_string(epochs).length()) << e
+                      << " / " << epochs << " ]  Loss: " 
+                      << std::setprecision(6) << currentLoss << "\n";
         }
     }
 }
