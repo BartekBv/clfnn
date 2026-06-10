@@ -1,7 +1,6 @@
 #include "../include/Softmax.h"
 #include <cmath>
 
-
 Matrix Softmax::compute(const Matrix& input) const {
     Matrix result(input.getRows(), input.getCols());
 
@@ -25,4 +24,16 @@ Matrix Softmax::compute(const Matrix& input) const {
         }
     }
     return result;
+}
+
+Matrix Softmax::derivative(const Matrix& input) const {
+    Matrix softmaxOutput = this->compute(input);
+    Matrix res(input.getRows(), input.getCols());
+
+    for (int i = 0; i < input.getRows(); i++) {
+        for (int j = 0; j < input.getCols(); j++) {
+            res(i, j) = softmaxOutput(i, j) * (1.0 - softmaxOutput(i, j));
+        }
+    }
+    return res;
 }
