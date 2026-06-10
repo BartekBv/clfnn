@@ -8,4 +8,9 @@ class DataLoader {
         std::string filepath;
         int inputCols;
         int outputCols;
+    
+    public:
+        DataLoader(const std::string& path, int incols, int outcols);
+        Matrix loadInputs() const;
+        Matrix loadTargets() const;
 };
