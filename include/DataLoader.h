@@ -4,5 +4,8 @@
 
 
 class DataLoader {
-    
+    private:
+        std::string filepath;
+        int inputCols;
+        int outputCols;
 };
