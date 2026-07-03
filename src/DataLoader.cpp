@@ -12,8 +12,7 @@ DataLoader::DataLoader(const std::string& path, int incols, int tarcols)
 Matrix DataLoader::loadInputs() const {
     std::ifstream file(this->filepath);
     if (!file.is_open()) {
-        std::cerr << "Error in opening file: " << this->filepath << std::endl;
-        return Matrix(0, 0);
+        throw std::runtime_error("Error: Cannot open file " + this->filepath);
     }
 
     std::vector<std::vector<double>> inputData;
@@ -30,11 +29,9 @@ Matrix DataLoader::loadInputs() const {
                 try {
                     row.push_back(std::stod(val));
                 } catch (const std::invalid_argument& e) {
-                    std::cerr << "Invalid input value: " << val << " in file: " << this->filepath << std::endl;
-                    row.push_back(0.0);
+                    throw std::runtime_error("Error: Invalid input value: " + val + " in file: " + this->filepath);
                 }catch (const std::out_of_range& e) {
-                    std::cerr << "Input value out of range: " << val << " in file: " << this->filepath << std::endl;
-                    row.push_back(0.0);
+                    throw std::runtime_error("Error: Input value out of range: " + val + " in file: " + this->filepath);
                 }
             }
             colId++;
@@ -42,7 +39,7 @@ Matrix DataLoader::loadInputs() const {
         if(row.size() == this->inputCols) {
             inputData.push_back(row);
         } else if (!row.empty()) {
-            std::cerr << "Warning: Expected " << this->inputCols << " input columns, but got " << row.size() << " in file: " << this->filepath << std::endl;
+            throw std::runtime_error("Error: Expected " + std::to_string(this->inputCols) + " input columns, but got " + std::to_string(row.size()) + " in file: " + this->filepath);
         }
     }
     file.close();
@@ -59,8 +56,7 @@ Matrix DataLoader::loadInputs() const {
 Matrix DataLoader::loadTargets() const {
     std::ifstream file(this->filepath);
     if (!file.is_open()) {
-        std::cerr << "Error in opening file: " << this->filepath << std::endl;
-        return Matrix(0, 0);
+        throw std::runtime_error("Error: Cannot open file " + this->filepath);
     }
 
     std::vector<std::vector<double>> targetData;
@@ -77,11 +73,9 @@ Matrix DataLoader::loadTargets() const {
                 try {
                     row.push_back(std::stod(val));
                 } catch (const std::invalid_argument& e) {
-                    std::cerr << "Invalid target value: " << val << " in file: " << this->filepath << std::endl;
-                    row.push_back(0.0);
+                    throw std::runtime_error("Error: Invalid target value: " + val + " in file: " + this->filepath);
                 }catch (const std::out_of_range& e) {
-                    std::cerr << "Target value out of range: " << val << " in file: " << this->filepath << std::endl;
-                    row.push_back(0.0);
+                    throw std::runtime_error("Error: Target value out of range: " + val + " in file: " + this->filepath);
                 }
             }
             colId++;
@@ -89,7 +83,7 @@ Matrix DataLoader::loadTargets() const {
         if(row.size() == this->targetCols) {
             targetData.push_back(row);
         } else if (!row.empty()) {
-            std::cerr << "Warning: Expected " << this->targetCols << " target columns, but got " << row.size() << " in file: " << this->filepath << std::endl;
+            throw std::runtime_error("Error: Expected " + std::to_string(this->targetCols) + " target columns, but got " + std::to_string(row.size()) + " in file: " + this->filepath);
         }
     }
     file.close();
