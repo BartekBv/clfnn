@@ -1,6 +1,12 @@
 #pragma once
 #include "Matrix.h"
 
+/**
+ * @brief Interfejs dla funkcji aktywacji.
+ * Definiuje metody wymagane do obliczenia wartości funkcji podczas propagacji w przód 
+ * oraz jej pochodnej na potrzeby wstecznej propagacji błędu.
+ */
+
 class IActivation {
     public:
         virtual ~IActivation() = default;

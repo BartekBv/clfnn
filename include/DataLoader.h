@@ -2,6 +2,11 @@
 #include <string>
 #include "Matrix.h"
 
+/**
+ * @brief Klasa odpowiedzialna za wczytywanie zestawów danych z pliku.
+ * Odczytuje zawartość pliku i rozdziela ją na macierz cech wejściowych (inputs) 
+ * oraz macierz wartości oczekiwanych (targets) na podstawie podanej liczby kolumn.
+ */
 
 class DataLoader {
     private:

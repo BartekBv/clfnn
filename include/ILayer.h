@@ -1,6 +1,12 @@
 #pragma once
 #include "Matrix.h"
 
+/**
+ * @brief Interfejs dla warstw sieci neuronowej.
+ * Definiuje podstawowe operacje: propagację w przód, propagację wstecz
+ * oraz aktualizację parametrów (wag i biasów).
+ */
+
 class ILayer {
     public:
         virtual ~ILayer() = default;

@@ -3,6 +3,12 @@
 #include "IActivation.h"
 #include "Matrix.h"
 
+/**
+ * @brief Warstwa w pełni połączona sieci neuronowej.
+ * Przechowuje macierze wag i biasów oraz stany pośrednie na potrzeby propagacji wstecznej.
+ * Wykonuje podanie danych w przód (z wykorzystaniem podanej funkcji aktywacji) i wstecz. Odpowiada za aktualizację wag i biasów na podstawie obliczonych gradientów. 
+ */
+
 class DenseLayer : public ILayer {
     private:
         Matrix weights;

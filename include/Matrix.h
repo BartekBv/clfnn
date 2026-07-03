@@ -2,6 +2,12 @@
 #include<stdexcept>
 #include<vector>
 
+/**
+ * @brief Klasa reprezentująca dwuwymiarową macierz danych.
+ * Przechowuje wartości w strukturze std::vector i realizuje operacje algebry liniowej. 
+ * Stanowi podstawę obliczeniową dla algorytmów propagacji w przód oraz propagacji wstecznej.
+ */
+
 class Matrix {
     private:
         std::vector<std::vector<double>> data;
