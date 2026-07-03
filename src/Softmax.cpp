@@ -32,7 +32,7 @@ Matrix Softmax::derivative(const Matrix& input) const {
 
     for (int i = 0; i < input.getRows(); i++) {
         for (int j = 0; j < input.getCols(); j++) {
-            res(i, j) = softmaxOutput(i, j) * (1.0 - softmaxOutput(i, j));
+            res(i, j) = 1.0; // Placeholder for the derivative of softmax (for using with categorical cross-entropy), which is more complex and typically involves the Jacobian matrix. This implementation is simplified and may not be correct for all use cases.
         }
     }
     return res;
