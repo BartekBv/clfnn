@@ -41,8 +41,8 @@ void NeuralNetwork::train(const Matrix& input, const Matrix& target, int epochs,
         if (printProgress && (e % 500 == 0 || e == epochs - 1)) {
             std::cout << "Epoch [ "
                       << std::setw(std::to_string(epochs).length()) << e
-                      << " / " << epochs << " ]  Loss: " 
-                      << std::setprecision(6) << currentLoss << "\n";
+                      << " / " << epochs - 1 << " ]  Loss: " 
+                      << std::fixed << std::setprecision(6) << currentLoss << "\n";
         }
     }
 }
@@ -55,4 +55,8 @@ Matrix NeuralNetwork::predict(const Matrix& input) const {
     }
 
     return current;
+}
+
+void NeuralNetwork::setLossFunction(ILoss* newLoss) {
+    this->lossFunction = newLoss;
 }
