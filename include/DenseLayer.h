@@ -22,6 +22,7 @@ class DenseLayer : public ILayer {
     
     public:
         DenseLayer(int inputSize, int outputSize, IActivation* activation);
+        ~DenseLayer() override;
 
         Matrix forward(const Matrix& input) override;
         Matrix backward(const Matrix& outputGrad) override;
