@@ -19,6 +19,10 @@ DenseLayer::DenseLayer(int inputSize, int outputSize, IActivation* activation)
         }
 }
 
+DenseLayer::~DenseLayer() {
+    delete this->activation;
+}
+
 Matrix DenseLayer::forward(const Matrix& input) {
     this->lastInput = input;
     this->lastZ = input.dot(weights).addBias(biases);
