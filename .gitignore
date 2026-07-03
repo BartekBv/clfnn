@@ -10,7 +10,6 @@
 build/
 notatka.md
 test/
-utils/
 *_test
 docs/
 wzorce.md
