@@ -43,14 +43,14 @@ Matrix Matrix::dot(const Matrix& other) const {
         throw std::invalid_argument("Incompatible dimensions for multiplication");
     }
 
-    Matrix res(this->rows, other.cols);
-    for(int i = 0; i < this->rows; i++) {
-        for(int j = 0; j < other.cols; j++) {
-            double sum = 0.0;
-            for(int k = 0; k < this->cols; k++) {
-                sum += (*this)(i, k) * other(k, j);
+    Matrix res(this->rows, other.cols); 
+    for(int k = 0; k < this->cols; k++) {
+        for(int i = 0; i < this->rows; i++) {
+            double a_ik = (*this)(i, k);
+            
+            for(int j = 0; j < other.cols; j++) {
+                res(i, j) += a_ik * other(k, j);
             }
-            res(i, j) = sum;
         }
     }
     return res;
