@@ -58,11 +58,11 @@ void printIrisTable(const Matrix& inputs, const Matrix& predictions, const Matri
 int main() {
     try {
         // Load training and testing data. Initialize loss and activaion functions, and set up the neural network. Then, train the network and evaluate its performance before and after training.
-        DataLoader trainloader("utils/iris_train.csv", 4, 3);
+        DataLoader trainloader("examples/data/iris_train.csv", 4, 3);
         Matrix X_train = trainloader.loadInputs();
         Matrix Y_train = trainloader.loadTargets();
 
-        DataLoader testloader("utils/iris_test.csv", 4, 3);
+        DataLoader testloader("examples/data/iris_test.csv", 4, 3);
         Matrix X_test = testloader.loadInputs();
         Matrix Y_test = testloader.loadTargets();
 

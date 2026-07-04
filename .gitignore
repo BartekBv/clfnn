@@ -11,5 +11,6 @@ build/
 notatka.md
 test/
 *_test
+example_exec
 docs/
 wzorce.md

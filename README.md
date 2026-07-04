@@ -93,7 +93,7 @@ int main() {
 This repository includes classification example located in the `examples/` directory, built around the [Iris Species dataset](https://www.kaggle.com/datasets/uciml/iris). The program evaluates the model with random initial weights, executes the training process over 13,000 epochs, and re-evaluates the predictions to demonstrate model's accuracy improvement
 
 ### Data Preprocessing
-The `Iris.csv` dataset was preprocessed using the Python scrips located in the `utils/` folder (`one_hot_iris.py`). Mentioned script applies One-Hot Encoding to target labels and splits the data into training and testing subsets.
+The `Iris.csv` dataset was preprocessed using the Python scrips located in the `examples/data/` folder (`one_hot_iris.py`). Mentioned script applies One-Hot Encoding to target labels and splits the data into training and testing subsets.
 
 ### Compiling and Running the Demo
 To execute the example directly from project's root direcotry, run:
