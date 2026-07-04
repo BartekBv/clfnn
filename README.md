@@ -66,10 +66,8 @@ Example of loading data, building network, training model and applying it for pr
 #include "clfnn.h"
 
 int main() {
-    // Initialize the loss function along with neural net
-    // and create custom layers. Then load data
-    // using built-in DataLoader, train the model
-    // and apply it.
+    // Initialize the loss function along with neural net and create custom layers.
+    //Then load data using built-in DataLoader, train the model and apply it.
     ILoss* cce = new CatCrossEntropy();
     NeuralNetwork nn(cce);
 
