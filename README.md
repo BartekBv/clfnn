@@ -18,6 +18,7 @@ CLFNN is a object-oriented, comprehensive multilayer perceptron library built co
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Example: Iris Classification](#example-iris-classification)
 - [Architecture](#architecture)
 - [License](#license)
 
