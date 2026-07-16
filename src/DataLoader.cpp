@@ -6,13 +6,21 @@
 #include <stdexcept>
 
 
-DataLoader::DataLoader(const std::string& path, int incols, int tarcols)
+DataLoader::DataLoader(const std::filesystem::path& path, int incols, int tarcols)
     : filepath(path), inputCols(incols), targetCols(tarcols) {}
 
 Matrix DataLoader::loadInputs() const {
+    if (!std::filesystem::exists(this->filepath)) {
+        throw std::runtime_error("Error: File not found: " + this->filepath.string());
+    }
+
+    if(!std::filesystem::is_regular_file(this->filepath)) {
+        throw std::runtime_error("Error: Path is not a regular file: " + this->filepath.string());
+    }
+
     std::ifstream file(this->filepath);
     if (!file.is_open()) {
-        throw std::runtime_error("Error: Cannot open file " + this->filepath);
+        throw std::runtime_error("Error: Cannot open file " + this->filepath.string());
     }
 
     std::vector<std::vector<double>> inputData;
@@ -29,9 +37,9 @@ Matrix DataLoader::loadInputs() const {
                 try {
                     row.push_back(std::stod(val));
                 } catch (const std::invalid_argument& e) {
-                    throw std::runtime_error("Error: Invalid input value: " + val + " in file: " + this->filepath);
+                    throw std::runtime_error("Error: Invalid input value: " + val + " in file: " + this->filepath.string());
                 }catch (const std::out_of_range& e) {
-                    throw std::runtime_error("Error: Input value out of range: " + val + " in file: " + this->filepath);
+                    throw std::runtime_error("Error: Input value out of range: " + val + " in file: " + this->filepath.string());
                 }
             }
             colId++;
@@ -39,7 +47,7 @@ Matrix DataLoader::loadInputs() const {
         if(row.size() == this->inputCols) {
             inputData.push_back(row);
         } else if (!row.empty()) {
-            throw std::runtime_error("Error: Expected " + std::to_string(this->inputCols) + " input columns, but got " + std::to_string(row.size()) + " in file: " + this->filepath);
+            throw std::runtime_error("Error: Expected " + std::to_string(this->inputCols) + " input columns, but got " + std::to_string(row.size()) + " in file: " + this->filepath.string());
         }
     }
     file.close();
