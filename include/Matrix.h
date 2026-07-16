@@ -17,13 +17,13 @@ class Matrix {
     public:
         Matrix(int rows, int cols);
 
-        Matrix add(const Matrix& other) const;
-        Matrix dot(const Matrix& other) const;
-        Matrix subtract(const Matrix& other) const;
-        Matrix multScalar(double scalar) const;
-        Matrix multHadamard(const Matrix& other) const;
-        Matrix addBias(const Matrix& bias) const;
-        Matrix transpose() const;
+        [[nodiscard]] Matrix add(const Matrix& other) const;
+        [[nodiscard]] Matrix dot(const Matrix& other) const;
+        [[nodiscard]] Matrix subtract(const Matrix& other) const;
+        [[nodiscard]] Matrix multScalar(double scalar) const;
+        [[nodiscard]] Matrix multHadamard(const Matrix& other) const;
+        [[nodiscard]] Matrix addBias(const Matrix& bias) const;
+        [[nodiscard]] Matrix transpose() const;
 
         int getRows() const;
         int getCols() const;
