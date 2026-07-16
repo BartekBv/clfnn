@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <filesystem>
 #include "Matrix.h"
 
 /**
@@ -10,12 +11,12 @@
 
 class DataLoader {
     private:
-        std::string filepath;
+        std::filesystem::path filepath;
         int inputCols;
         int targetCols;
     
     public:
-        DataLoader(const std::string& path, int incols, int outcols);
+        DataLoader(const std::filesystem::path& path, int incols, int outcols);
         Matrix loadInputs() const;
         Matrix loadTargets() const;
 };
