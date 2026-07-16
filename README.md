@@ -2,7 +2,7 @@
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![C++](https://img.shields.io/badge/C++-17%2B-blue.svg)
-![Jupyter](https://img.shields.io/badge/Jupyter-Supported-orange.svg)
+![Jupyter](https://img.shields.io/badge/Jupyter-Example-orange.svg)
 
 **C++ Library for Feedforward Neural Networks**
 
