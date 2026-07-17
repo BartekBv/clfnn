@@ -4,6 +4,8 @@
 #include <iostream>
 #include <vector>
 #include <stdexcept>
+#include <string_view>
+#include <charconv>
 
 
 DataLoader::DataLoader(const std::filesystem::path& path, int incols, int tarcols)
@@ -27,23 +29,36 @@ Matrix DataLoader::loadInputs() const {
     std::string line;
 
     while(std::getline(file, line)) {
+        if(line.empty()) continue;
+
         std::vector<double> row;
-        std::stringstream ss(line);
-        std::string val;
+
+        std::string_view lineView(line);
+        size_t start = 0;
+        size_t end = lineView.find(',');
         int colId = 0;
 
-        while (std::getline(ss, val, ',')) {
+        while(start <= lineView.size()){
+            std::string_view valView = lineView.substr(start, end - start);
+            
             if(colId < this->inputCols){
-                try {
-                    row.push_back(std::stod(val));
-                } catch (const std::invalid_argument& e) {
-                    throw std::runtime_error("Error: Invalid input value: " + val + " in file: " + this->filepath.string());
-                }catch (const std::out_of_range& e) {
-                    throw std::runtime_error("Error: Input value out of range: " + val + " in file: " + this->filepath.string());
+                double value = 0.0;
+                auto [ptr, ec] = std::from_chars(valView.data(), valView.data() + valView.size(), value);
+
+                if(ec == std::errc()){
+                    row.push_back(value);
+                } else{
+                    throw std::runtime_error("Error: Invalid input value: " + std::string(valView) + " in file: " + this->filepath.string());
                 }
             }
+
+            if(end == std::string_view::npos) break;
+            
+            start = end + 1;
+            end = lineView.find(',', start);
             colId++;
         }
+
         if(row.size() == this->inputCols) {
             inputData.push_back(row);
         } else if (!row.empty()) {
@@ -79,23 +94,36 @@ Matrix DataLoader::loadTargets() const {
     std::string line;
 
     while(std::getline(file, line)) {
+        if (line.empty()) continue;
+
         std::vector<double> row;
-        std::stringstream ss(line);
-        std::string val;
+        std::string_view lineView(line);
+        
+        size_t start = 0;
+        size_t end = lineView.find(',');
         int colId = 0;
 
-        while (std::getline(ss, val, ',')) {
-            if(colId >=this->inputCols && colId < (this->inputCols + this->targetCols)){
-                try {
-                    row.push_back(std::stod(val));
-                } catch (const std::invalid_argument& e) {
-                    throw std::runtime_error("Error: Invalid target value: " + val + " in file: " + this->filepath.string());
-                }catch (const std::out_of_range& e) {
-                    throw std::runtime_error("Error: Target value out of range: " + val + " in file: " + this->filepath.string());
+        while (start <= lineView.length()) {
+            std::string_view valView = lineView.substr(start, end - start);
+            
+            if(colId >= this->inputCols && colId < (this->inputCols + this->targetCols)){
+                double value = 0.0;
+                auto [ptr, ec] = std::from_chars(valView.data(), valView.data() + valView.size(), value);
+                
+                if (ec == std::errc()) {
+                    row.push_back(value);
+                } else {
+                    throw std::runtime_error("Error: Invalid target value in file: " + this->filepath.string());
                 }
             }
+            
+            if (end == std::string_view::npos) break;
+            
+            start = end + 1;
+            end = lineView.find(',', start);
             colId++;
         }
+
         if(row.size() == this->targetCols) {
             targetData.push_back(row);
         } else if (!row.empty()) {
