@@ -108,7 +108,13 @@ g++ -O3 examples/example.cpp src/*.cpp -I include -o example_exec
 
 
 ## Architecture
+(work in progress)
 
+CLFNN is built on Object-oriented programming principles.
+
+### SOLID
+
+![UML Diagram](images/diagram_klas.png)
 
 ## License
 
