@@ -107,13 +107,21 @@ g++ -O3 examples/example.cpp src/*.cpp -I include -o example_exec
 
 
 ## Architecture
-(work in progress)
 
-CLFNN is built on Object-oriented programming principles.
+Library is built on Object-oriented programming principles. Such architecture achieves high modularity and maintainability.
 
 ### SOLID
+* Single Responsibility: Classes have strictly bounded scopes (`Matrix` isolates linear algebra, `DataLoader` handles pure file I/O).
+* Open/Closed Principle: Custom layers (e.g. `DropoutLayer`) or loss functions can be injected without altering the `NeuralNetwork`.
+* Liskov Substitution Principle: Polymorphic design ensures subclasses (`ReLU`, `CatCrossEntropy`) can replace their abstract interfaces (`IActivation`, `ILoss`).
+* Interface Segregation Principle: Interfaces are kept minimal. `ILayer` forces only the essential methods (`forward`, `backward`, `updateWeights`), preventing other classes for implementing unused methods.
+* Dependency Inversion Principle: The `NeuralNetwork` class does not instantiate its own layers or loss functions. Instead, it depends entirely on abstractions (`ILayer`, `ILoss`) injected via its constructor and methods, separating training loop from mathematical implementations.
 
 ![UML Diagram](images/diagram_klas.png)
+
+### Performance
+* Parsing: The `DataLoader` abandons standard string streams. It utilizes C++17 `std::string_view` and low-level `<charconv>` (`std::from_chars`) to parse CSV datasets directly from memory buffers.
+
 
 ## License
 
