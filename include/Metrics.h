@@ -2,9 +2,9 @@
 #include "Matrix.h"
 
 /**
- * @brief Zbiór statycznych metod do oceny jakości predykcji modelu.
- * Udostępnia metryki porównujące wyjście sieci z rzeczywistymi etykietami.
- * Wykorzystywane do ewaluacji modelu po treningu.
+ * @brief A collection of static methods for evaluating model prediction quality.
+ * Provides metrics that compare the network's output with the actual labels.
+ * Used to evaluate the model after training.
  */
 
 class Metrics {

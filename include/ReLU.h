@@ -2,9 +2,9 @@
 #include "IActivation.h"
 
 /**
- * @brief Implementacja funkcji aktywacji Leaky ReLU.
- * Dla wartości dodatnich zwraca wartość wejściową, a dla ujemnych wartość przemnożoną przez współczynnik alpha.
- * Oblicza również pochodną, która jest potrzebna do propagacji wstecznej.
+ * @brief Implementation of the Leaky ReLU activation function.
+ * For positive values it returns the input value, and for negative values it returns the value multiplied by the alpha coefficient.
+ * Also computes the derivative needed for backpropagation.
  */
 
 class ReLU : public IActivation {

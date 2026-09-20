@@ -5,9 +5,9 @@
 #include <fstream>
 
 /**
- * @brief Warstwa w pełni połączona sieci neuronowej.
- * Przechowuje macierze wag i biasów oraz stany pośrednie na potrzeby propagacji wstecznej.
- * Wykonuje podanie danych w przód (z wykorzystaniem podanej funkcji aktywacji) i wstecz. Odpowiada za aktualizację wag i biasów na podstawie obliczonych gradientów. 
+ * @brief Fully connected layer of a neural network.
+ * Stores the weight and bias matrices along with intermediate states needed for backpropagation.
+ * Performs forward propagation (using the given activation function) and backward propagation. Responsible for updating weights and biases based on the computed gradients.
  */
 
 class DenseLayer : public ILayer {

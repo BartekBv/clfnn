@@ -18,7 +18,7 @@ Matrix Sigmoid::compute(const Matrix& input) const {
 Matrix Sigmoid::derivative(const Matrix& input) const {
     Matrix res(input.getRows(), input.getCols());
 
-    //pochodna sigmoid(x) = (steepness) * sigmoid(x) * (1 - sigmoid(x))
+    //derivative of sigmoid(x) = (steepness) * sigmoid(x) * (1 - sigmoid(x))
     Matrix sigval = compute(input);
     for (int i = 0; i < input.getRows(); i++) {
         for (int j = 0; j < input.getCols(); j++){

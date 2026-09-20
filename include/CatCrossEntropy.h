@@ -2,12 +2,12 @@
 #include "ILoss.h"
 
 /**
- * @brief Implementacja funkcji straty kategorycznej entropii krzyżowej (Categorical Cross-Entropy).
- * Służy do oceny błędu predykcji w problemach klasyfikacji wieloklasowej. 
- * Przeznaczona do bezpośredniej współpracy z funkcją aktywacji Softmax.
- * Oblicza wartość straty na podstawie przewidywanych prawdopodobieństw i rzeczywistych etykiet, a także gradient potrzebny do propagacji wstecznej.
- * Przechowuje ostatnio obliczoną wartość straty, która może być zwrócona przez metodę getLastCalculatedLoss().
- * Metoda getName() zwraca skrót "CCE".
+ * @brief Implementation of the Categorical Cross-Entropy loss function.
+ * Used to evaluate prediction error in multi-class classification problems.
+ * Designed to work directly with the Softmax activation function.
+ * Computes the loss value based on the predicted probabilities and the actual labels, as well as the gradient needed for backpropagation.
+ * Stores the last computed loss value, which can be returned by the getLastCalculatedLoss() method.
+ * The getName() method returns the abbreviation "CCE".
  */
 
 class CatCrossEntropy : public ILoss {

@@ -10,11 +10,11 @@
 
 
 /**
- * @brief Nagłówek zbiorczy biblioteki CLFNN.
- * Dołącza wszystkie komponenty potrzebne do budowy,
- * trenowania i ewaluacji sieci neuronowej,
- * pozwalając na użycie biblioteki poprzez pojedyncze #include "clfnn.h".
- * Definiuje też pomocnicze kody kolorów ANSI do formatowania wyników w konsoli.
+ * @brief Umbrella header for the CLFNN library.
+ * Includes all the components needed to build,
+ * train, and evaluate a neural network,
+ * allowing the library to be used via a single #include "clfnn.h".
+ * Also defines helper ANSI color codes for formatting console output.
  */
 
 namespace Color {

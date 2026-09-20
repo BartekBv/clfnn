@@ -6,9 +6,9 @@
 #include <vector>
 
 /**
- * @brief Klasa ta zarządza cyklem życia modelu: przechowuje listę warstw gęstych (DenseLayer), 
- * inicjuje proces przewidywania (predict) oraz nauki (train).
- * Wykorzystuje wstrzykiwaną z zewnątrz funkcję straty, aby ocenić jakość predykcji.
+ * @brief This class manages the model's lifecycle: it stores the list of dense layers (DenseLayer)
+ * and drives the prediction (predict) and training (train) processes.
+ * Uses an externally injected loss function to evaluate prediction quality.
  */
 
 class NeuralNetwork {

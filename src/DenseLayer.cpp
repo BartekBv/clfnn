@@ -11,7 +11,7 @@ DenseLayer::DenseLayer(int inputSize, int outputSize, IActivation* activation)
         for (int i = 0; i < inputSize; i++){
             for (int j = 0; j < outputSize; j++){
                 weights(i, j) = ((double)rand() / RAND_MAX) - 0.5;
-                //losowe wagi z zakresu [-0.5, 0.5]
+                //random weights in the range [-0.5, 0.5]
             }
         }
 

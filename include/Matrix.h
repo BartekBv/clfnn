@@ -4,9 +4,9 @@
 #include<fstream>
 
 /**
- * @brief Klasa reprezentująca dwuwymiarową macierz danych.
- * Przechowuje wartości w strukturze std::vector i realizuje operacje algebry liniowej. 
- * Stanowi podstawę obliczeniową dla algorytmów propagacji w przód oraz propagacji wstecznej.
+ * @brief Class representing a two-dimensional matrix of data.
+ * Stores values in an std::vector structure and implements linear algebra operations.
+ * Serves as the computational foundation for forward and backward propagation algorithms.
  */
 
 class Matrix {

@@ -3,9 +3,9 @@
 #include <fstream>
 
 /**
- * @brief Interfejs dla warstw sieci neuronowej.
- * Definiuje podstawowe operacje: propagację w przód, propagację wstecz
- * oraz aktualizację parametrów (wag i biasów).
+ * @brief Interface for neural network layers.
+ * Defines the basic operations: forward propagation, backward propagation,
+ * and updating parameters (weights and biases).
  */
 
 class ILayer {

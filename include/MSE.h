@@ -2,9 +2,9 @@
 #include "ILoss.h"
 
 /**
- * @brief Implementacja funkcji straty błędu średniokwadratowego (Mean Squared Error).
- * Oblicza średnią z kwadratów różnic między predykcją a oczekiwaną wartością. 
- * Oblicza również gradient, który jest potrzebny do propagacji wstecznej. Przechowuje ostatnio obliczoną wartość straty, która może być zwrócona przez metodę getLastCalculatedLoss(). Metoda getName() zwraca skrót "MSE".
+ * @brief Implementation of the Mean Squared Error loss function.
+ * Computes the mean of the squared differences between the prediction and the expected value.
+ * Also computes the gradient needed for backpropagation. Stores the last computed loss value, which can be returned by getLastCalculatedLoss(). The getName() method returns the abbreviation "MSE".
  */
 
 class MSE : public ILoss {

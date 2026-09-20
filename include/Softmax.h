@@ -3,9 +3,9 @@
 #include "Matrix.h"
 
 /**
- * @brief Implementacja funkcji aktywacji Softmax.
- * Normalizuje wartości wejściowe do postaci rozkładu prawdopodobieństwa sumującego się do 1. 
- * Metoda pochodnej jest zoptymalizowana do bezpośredniej współpracy z kategoryczną entropią krzyżową.
+ * @brief Implementation of the Softmax activation function.
+ * Normalizes input values into a probability distribution that sums to 1.
+ * The derivative method is optimized to work directly with categorical cross-entropy.
  */
 
 class Softmax : public IActivation {

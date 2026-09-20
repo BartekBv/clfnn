@@ -2,9 +2,9 @@
 #include "Matrix.h"
 
 /**
- * @brief Interfejs dla funkcji straty.
- * Definiuje metody do obliczania wartości błędu pomiędzy predykcją a rzeczywistą wartością,
- * wyliczania gradientu niezbędnego do wstecznej propagacji oraz zwracania ostatnio obliczonej wartości straty.
+ * @brief Interface for loss functions.
+ * Defines methods for computing the error value between a prediction and the actual value,
+ * calculating the gradient needed for backpropagation, and returning the last computed loss value.
  */
 
 class ILoss {

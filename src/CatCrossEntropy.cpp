@@ -4,11 +4,11 @@
 
 double CatCrossEntropy::calcLoss(const Matrix& pred, const Matrix& target) const {
     double loss = 0.0;
-    double epsilon = 1.0e-12; // mala wartosc, by uniknac log(0)
+    double epsilon = 1.0e-12; // small value to avoid log(0)
 
     for (int i = 0; i < pred.getRows(); i++) {
         for (int j = 0; j < pred.getCols(); j++) {
-            if (target(i, j) > 0.5) {   // zakladamy, ze target jest one-hot encoded
+            if (target(i, j) > 0.5) {   // assumes target is one-hot encoded
                 loss -= std::log(std::max(pred(i, j), epsilon));
             }
         }
@@ -20,11 +20,11 @@ double CatCrossEntropy::calcLoss(const Matrix& pred, const Matrix& target) const
 
 Matrix CatCrossEntropy::calcGrad(const Matrix& pred, const Matrix& target) const {
     Matrix grad(pred.getRows(), pred.getCols());
-    double epsilon = 1.0e-12; // mala wartosc, by uniknac dzielenia przez 0
+    double epsilon = 1.0e-12; // small value to avoid division by 0
 
     for (int i = 0; i < pred.getRows(); i++) {
         for (int j = 0; j < pred.getCols(); j++) {
-            grad(i, j) = pred(i, j) - target(i, j); // pochodna cross-entropy dla softmaxa to (pred - target)
+            grad(i, j) = pred(i, j) - target(i, j); // cross-entropy derivative for softmax is (pred - target)
         }
     }
     return grad.multScalar(1.0 / pred.getRows());

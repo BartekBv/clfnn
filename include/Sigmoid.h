@@ -2,9 +2,9 @@
 #include "IActivation.h"
 
 /**
- * @brief Implementacja funkcji aktywacji Sigmoid.
- * Mapuje wartości wejściowe na przedział (0, 1). Opcjonalny parametr steepness pozwala na modyfikację nachylenia krzywej.
- * Oblicza również pochodną, która jest potrzebna do propagacji wstecznej.
+ * @brief Implementation of the Sigmoid activation function.
+ * Maps input values to the (0, 1) range. The optional steepness parameter allows adjusting the curve's slope.
+ * Also computes the derivative needed for backpropagation.
  */
 
 class Sigmoid : public IActivation {
