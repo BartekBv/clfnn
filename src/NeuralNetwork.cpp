@@ -1,4 +1,6 @@
 #include "../include/NeuralNetwork.h"
+#include "../include/ITrainableLayer.h"
+#include "../include/IPersistableLayer.h"
 #include <iostream>
 #include <iomanip>
 #include <fstream>
@@ -39,7 +41,9 @@ void NeuralNetwork::train(const Matrix& input, const Matrix& target, int epochs,
         }
 
         for(ILayer* layer : layers) {
-            layer->updateWeights(lr);
+            if (auto* trainable = dynamic_cast<ITrainableLayer*>(layer)) {
+                trainable->updateWeights(lr);
+            }
         }
 
         if (printProgress && (e % 500 == 0 || e == epochs - 1)) {
@@ -78,9 +82,11 @@ void NeuralNetwork::saveModel(const std::filesystem::path& filepath) const {
     out.write(reinterpret_cast<const char*>(&layercnt), sizeof(layercnt));
 
     for (const auto& layer : layers) {
-        layer->save(out);
+        if (auto* persistable = dynamic_cast<IPersistableLayer*>(layer)) {
+            persistable->save(out);
+        }
     }
-    
+
     out.close();
 }
 
@@ -97,8 +103,10 @@ void NeuralNetwork::loadModel(const std::filesystem::path& filepath) {
     }
 
     for (const auto& layer : layers) {
-        layer->load(in);
+        if (auto* persistable = dynamic_cast<IPersistableLayer*>(layer)) {
+            persistable->load(in);
+        }
     }
-    
+
     in.close();
 }

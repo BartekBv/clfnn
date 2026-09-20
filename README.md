@@ -5,7 +5,7 @@
 
 **C++ Library for Feedforward Neural Networks**
 
-CLFNN is a object-oriented, multilayer perceptron library built completely from scratch. It relies solely on C++ standard library, featuring its own custom-built mathematical engine. It provides functionalities such as:
+CLFNN is an object-oriented, multilayer perceptron library built completely from scratch. It relies solely on C++ standard library, featuring its own custom-built mathematical engine. It provides functionalities such as:
 * loading data
 * building custom dense layers
 * training neural networks using gradient-descent with backpropagation
@@ -16,6 +16,7 @@ CLFNN is a object-oriented, multilayer perceptron library built completely from 
 - [Features](#features)
 - [Requirements](#requirements)
 - [Installation](#installation)
+- [Documentation](#documentation)
 - [Usage](#usage)
 - [Example: Iris Classification](#example-iris-classification)
 - [Architecture](#architecture)
@@ -34,11 +35,15 @@ CLFNN is a object-oriented, multilayer perceptron library built completely from 
 - **Optimization and Loss**
   - Built-in error calculations for `MSE` (Mean Squared Error) and `CCE` (Categorical Cross-Entropy).
   - Full backpropagation algorithm with early stopping mechanisms.
+- **Model Persistence**
+  - Save and load trained models to/from binary files via `saveModel()`/`loadModel()`, with architecture validation on load.
+- **Evaluation Metrics**
+  - `Metrics::accuracy()` for quick classification accuracy scoring against one-hot encoded targets.
 
 ## Requirements
 
-- **C++ Compiler**: Version supporting C++17 or newer (e.g., GCC 8+, Clang 5+, MSVC 19.15+).
-- **Python** (Optional): For running data preprocessing script.
+- **C++ Compiler**: Full C++17 support, including `<charconv>` floating-point parsing (`std::from_chars` for `double`), used by `DataLoader`. In practice: **GCC 11+**, **Clang 14+** (with a matching libc++), or **MSVC 19.24+** (Visual Studio 2019 16.4+). Earlier compilers may support the rest of C++17 but lack this specific library feature and will fail to compile.
+- **Python** (Optional): For running the data preprocessing script.
 
 ## Installation
 
@@ -47,6 +52,10 @@ To install the library, simply clone the repository to your local machine.
 git clone https://github.com/BartekBv/clfnn.git
 cd clfnn
 ```
+
+## Documentation
+
+Full API reference (generated with Doxygen) is available at **[bartekbv.github.io/clfnn](https://bartekbv.github.io/clfnn/)**, automatically rebuilt from `include/` and `src/` on every push to `main`.
 
 ## Usage
 
@@ -89,14 +98,29 @@ int main() {
 }
 ```
 
+### Saving and Loading a Model
+```C++
+// Save the model to a binary file after training
+// Next you may rebuild the same architecture, then load the saved weights
+nn.saveModel("model.bin");
+
+NeuralNetwork nn2(new CatCrossEntropy());
+nn2.addLayer(new DenseLayer(4, 8, new ReLU()));
+nn2.addLayer(new DenseLayer(8, 3, new Softmax()));
+nn2.loadModel("model.bin");
+
+Matrix predictions = nn2.predict(X_train);
+```
+`loadModel()` checks that the file's architecture (number of layers and their dimensions) matches the current network, and throws an exception on mismatch.
+
 ## Example: Iris Classification
-This repository includes classification example located in the `examples/` directory, built around the [Iris Species dataset](https://www.kaggle.com/datasets/uciml/iris). The program evaluates the model with random initial weights, executes the training process over 13,000 epochs, and re-evaluates the predictions to demonstrate model's accuracy improvement
+This repository includes a classification example located in the `examples/` directory, built around the [Iris Species dataset](https://www.kaggle.com/datasets/uciml/iris). The program evaluates the model with random initial weights, executes the training process over 13,000 epochs, and re-evaluates the predictions to demonstrate model's accuracy improvement
 
 ### Data Preprocessing
-The `Iris.csv` dataset was preprocessed using the Python scrips located in the `examples/data/` folder (`one_hot_iris.py`). Mentioned script applies One-Hot Encoding to target labels and splits the data into training and testing subsets.
+The `Iris.csv` dataset was preprocessed using the Python scripts located in the `examples/data/` folder (`one_hot_iris.py`). Mentioned script applies One-Hot Encoding to target labels and splits the data into training and testing subsets.
 
 ### Compiling and Running the Demo
-To execute the example directly from project's root direcotry, run:
+To execute the example directly from project's root directory, run:
 ```bash
 g++ -O3 examples/example.cpp src/*.cpp -I include -o example_exec
 ./example_exec
@@ -113,8 +137,8 @@ Library is built on Object-oriented programming principles. Such architecture ac
 ### SOLID
 * Single Responsibility: Classes have strictly bounded scopes (`Matrix` isolates linear algebra, `DataLoader` handles pure file I/O).
 * Open/Closed Principle: Custom layers (e.g. `DropoutLayer`) or loss functions can be injected without altering the `NeuralNetwork`.
-* Liskov Substitution Principle: Polymorphic design ensures subclasses (`ReLU`, `CatCrossEntropy`) can replace their abstract interfaces (`IActivation`, `ILoss`).
-* Interface Segregation Principle: Interfaces are kept minimal. `ILayer` forces only the essential methods (`forward`, `backward`, `updateWeights`), preventing other classes for implementing unused methods.
+* Liskov Substitution Principle: Polymorphic design ensures subclasses (e.g. `ReLU`, `CatCrossEntropy`) can replace their abstract interfaces (`IActivation`, `ILoss`). (`Softmax` is one documented exception — its derivative is simplified to work only when paired with `CatCrossEntropy`; see their header comments.)
+* Interface Segregation Principle: `ILayer` covers only the core operations every layer must support (`forward`, `forwardconst`, `backward`). Trainable parameters (`updateWeights`, `getWeights`, `getBiases`) and persistence (`save`, `load`) are split into separate `ITrainableLayer`/`IPersistableLayer` interfaces, so a parameterless layer (e.g. `DropoutLayer`) only needs to implement `ILayer`.
 * Dependency Inversion Principle: The `NeuralNetwork` class does not instantiate its own layers or loss functions. Instead, it depends entirely on abstractions (`ILayer`, `ILoss`) injected via its constructor and methods, separating training loop from mathematical implementations.
 
 ![UML Diagram](images/diagram_klas.png)

@@ -1,5 +1,7 @@
 #pragma once
 #include "ILayer.h"
+#include "ITrainableLayer.h"
+#include "IPersistableLayer.h"
 #include "IActivation.h"
 #include "Matrix.h"
 #include <fstream>
@@ -10,7 +12,7 @@
  * Performs forward propagation (using the given activation function) and backward propagation. Responsible for updating weights and biases based on the computed gradients.
  */
 
-class DenseLayer : public ILayer {
+class DenseLayer : public ILayer, public ITrainableLayer, public IPersistableLayer {
     private:
         Matrix weights;
         Matrix biases;
