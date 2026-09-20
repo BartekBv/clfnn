@@ -74,6 +74,9 @@ void NeuralNetwork::saveModel(const std::filesystem::path& filepath) const {
         throw std::runtime_error("Nie można otworzyć pliku do zapisu modelu.");
     }
 
+    size_t layercnt = layers.size();
+    out.write(reinterpret_cast<const char*>(&layercnt), sizeof(layercnt));
+
     for (const auto& layer : layers) {
         layer->save(out);
     }
@@ -85,6 +88,12 @@ void NeuralNetwork::loadModel(const std::filesystem::path& filepath) {
     std::ifstream in(filepath, std::ios::binary);
     if (!in) {
         throw std::runtime_error("Nie można otworzyć pliku do odczytu modelu.");
+    }
+
+    size_t layercnt = 0;
+    in.read(reinterpret_cast<char*>(&layercnt), sizeof(layercnt));
+    if (layercnt != layers.size()) {
+        throw std::runtime_error("Liczba warstw w pliku (" + std::to_string(layercnt) +") nie zgadza się z architekturą sieci (" + std::to_string(layers.size()) + " warstw).");
     }
 
     for (const auto& layer : layers) {

@@ -1,5 +1,6 @@
 #include "../include/DenseLayer.h"
 #include <cstdlib> // for rand() and RAND_MAX
+#include <stdexcept>
 
 DenseLayer::DenseLayer(int inputSize, int outputSize, IActivation* activation)
     : weights(inputSize, outputSize), biases(1, outputSize),
@@ -69,6 +70,15 @@ void DenseLayer::save(std::ofstream& out) const {
 }
 
 void DenseLayer::load(std::ifstream& in) {
-    weights.load(in);
-    biases.load(in);
+    Matrix newWeights(1, 1);
+    Matrix newBiases(1, 1);
+    newWeights.load(in);
+    newBiases.load(in);
+
+    if (newWeights.getRows() != weights.getRows() || newWeights.getCols() != weights.getCols() || newBiases.getRows() != biases.getRows() || newBiases.getCols() != biases.getCols()) {
+        throw std::runtime_error("Wymiary warstwy w pliku modelu nie zgadzają się z bieżącą architekturą sieci.");
+    }
+
+    weights = newWeights;
+    biases = newBiases;
 }
