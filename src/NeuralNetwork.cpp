@@ -93,7 +93,7 @@ void NeuralNetwork::loadModel(const std::filesystem::path& filepath) {
     size_t layercnt = 0;
     in.read(reinterpret_cast<char*>(&layercnt), sizeof(layercnt));
     if (layercnt != layers.size()) {
-        throw std::runtime_error("Number of layers in the file (" + std::to_string(layercnt) +") does not match the network architecture (" + std::to_string(layers.size()) + " layers).");
+        throw std::runtime_error("Number of layers in the file (" + std::to_string(layercnt) +") does not match the network architecture (expected " + std::to_string(layers.size()) + ").");
     }
 
     for (const auto& layer : layers) {
