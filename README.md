@@ -141,7 +141,7 @@ Library is built on Object-oriented programming principles. Such architecture ac
 * Interface Segregation Principle: `ILayer` covers only the core operations every layer must support (`forward`, `forwardconst`, `backward`). Trainable parameters (`updateWeights`, `getWeights`, `getBiases`) and persistence (`save`, `load`) are split into separate `ITrainableLayer`/`IPersistableLayer` interfaces, so a parameterless layer (e.g. `DropoutLayer`) only needs to implement `ILayer`.
 * Dependency Inversion Principle: The `NeuralNetwork` class does not instantiate its own layers or loss functions. Instead, it depends entirely on abstractions (`ILayer`, `ILoss`) injected via its constructor and methods, separating training loop from mathematical implementations.
 
-![UML Diagram](images/diagram_klas.png)
+![UML Diagram](images/diagram.png)
 
 ### Performance
 * Parsing: The `DataLoader` avoids `std::istringstream`-based numeric parsing for individual CSV fields. It uses C++17 `std::string_view` and low-level `<charconv>` (`std::from_chars`) to convert values directly from the line buffer without extra allocations.

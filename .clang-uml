@@ -1,0 +1,19 @@
+compilation_database_dir: .
+output_directory: diagrams
+add_compile_flags:
+  - "-isysroot"
+  - "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk"
+  - "-resource-dir"
+  - "/opt/homebrew/Cellar/llvm@22/22.1.8/lib/clang/22"
+diagrams:
+  clfnn_architecture:
+    type: class
+    glob:
+      - src/*.cpp
+    generate_packages: false
+    include:
+      paths:
+        - include
+    exclude:
+      namespaces:
+        - std

@@ -1,6 +1,7 @@
 #include "../include/Matrix.h"
 #include <iostream>
 #include <iomanip>
+#include <stdexcept>
 
 Matrix::Matrix(int r, int c) : rows(r) , cols(c) {
     data.resize(r, std::vector<double>(c, 0.0));

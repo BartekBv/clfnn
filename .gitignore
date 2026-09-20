@@ -16,3 +16,6 @@ docs/
 wzorce.md
 compile_flags.txt
 .DS_Store
+compile_commands.json
+.cache/
+diagrams/
