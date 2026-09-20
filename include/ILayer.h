@@ -12,6 +12,7 @@ class ILayer {
     public:
         virtual ~ILayer() = default;
         virtual Matrix forward(const Matrix& input) = 0;
+        virtual Matrix forwardconst(const Matrix& input) const = 0;
         virtual Matrix backward(const Matrix& gradOutput) = 0;
         virtual void updateWeights(double learningRate) = 0;
 
