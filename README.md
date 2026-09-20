@@ -144,7 +144,7 @@ Library is built on Object-oriented programming principles. Such architecture ac
 ![UML Diagram](images/diagram_klas.png)
 
 ### Performance
-* Parsing: The `DataLoader` abandons standard string streams. It utilizes C++17 `std::string_view` and low-level `<charconv>` (`std::from_chars`) to parse CSV datasets directly from memory buffers.
+* Parsing: The `DataLoader` avoids `std::istringstream`-based numeric parsing for individual CSV fields. It uses C++17 `std::string_view` and low-level `<charconv>` (`std::from_chars`) to convert values directly from the line buffer without extra allocations.
 
 
 ## License

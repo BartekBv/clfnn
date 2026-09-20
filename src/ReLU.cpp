@@ -1,5 +1,4 @@
 #include "../include/ReLU.h"
-#include <algorithm>
 
 ReLU::ReLU(double alpha) : alpha(alpha) {}
 
