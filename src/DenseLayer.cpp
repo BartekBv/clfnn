@@ -76,7 +76,7 @@ void DenseLayer::load(std::ifstream& in) {
     newBiases.load(in);
 
     if (newWeights.getRows() != weights.getRows() || newWeights.getCols() != weights.getCols() || newBiases.getRows() != biases.getRows() || newBiases.getCols() != biases.getCols()) {
-        throw std::runtime_error("Wymiary warstwy w pliku modelu nie zgadzają się z bieżącą architekturą sieci.");
+        throw std::runtime_error("Layer dimensions in the model file do not match the current network architecture.");
     }
 
     weights = newWeights;
