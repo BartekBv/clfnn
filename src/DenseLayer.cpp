@@ -29,6 +29,11 @@ Matrix DenseLayer::forward(const Matrix& input) {
     return this->activation->compute(this->lastZ);
 }
 
+Matrix DenseLayer::forwardconst(const Matrix& input) const {
+    Matrix z = input.dot(weights).addBias(biases);
+    return this->activation->compute(z);
+}
+
 Matrix DenseLayer::backward(const Matrix& outputGrad) {
     Matrix dZ = outputGrad.multHadamard(this->activation->derivative(this->lastZ));
 

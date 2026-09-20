@@ -26,6 +26,7 @@ class DenseLayer : public ILayer {
         ~DenseLayer() override;
 
         Matrix forward(const Matrix& input) override;
+        Matrix forwardconst(const Matrix& input) const override;
         Matrix backward(const Matrix& outputGrad) override;
         void updateWeights(double learningRate) override;
 
