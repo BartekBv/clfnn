@@ -62,6 +62,7 @@ Matrix NeuralNetwork::predict(const Matrix& input) const {
 }
 
 void NeuralNetwork::setLossFunction(ILoss* newLoss) {
+    delete this->lossFunction;
     this->lossFunction = newLoss;
 }
 
