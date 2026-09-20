@@ -8,6 +8,15 @@
 #include "Softmax.h"
 #include "CatCrossEntropy.h"
 
+
+/**
+ * @brief Nagłówek zbiorczy biblioteki CLFNN.
+ * Dołącza wszystkie komponenty potrzebne do budowy,
+ * trenowania i ewaluacji sieci neuronowej,
+ * pozwalając na użycie biblioteki poprzez pojedyncze #include "clfnn.h".
+ * Definiuje też pomocnicze kody kolorów ANSI do formatowania wyników w konsoli.
+ */
+
 namespace Color {
     const std::string RESET   = "\033[0m";
     const std::string RED     = "\033[31m";
